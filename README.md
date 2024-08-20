@@ -40,7 +40,7 @@ I'm a high school student currently in the final year of education as of making 
 
  - [NCERT Computer Science](https://ncert.nic.in/textbook.php?lecs1=2-13)
  - [Visual Studio Code IDE](https://code.visualstudio.com/)
- - [Basketball Reference]([Readme.so](https://readme.so/editor))
+ - [Basketball Reference]((https://www.basketball-reference.com/))
  - [Readme.so](https://readme.so/editor)
  - Dr. E. Indhumathi (HOD of Computer Science),   Chettinad Vidya Mandir
 
