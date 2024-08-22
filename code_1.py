@@ -1,9 +1,9 @@
 import csv
-def main():
 
-    f=open("player.csv","r",newline='')
+def main():
+    f=open("write.csv","w")
     while True:
-        choice=int(input("Enter your choice: 1) Show details 2) Write data 3) Append data 4) Update data"))
+        choice=int(input("Enter your choice: \n1) Show details \n2) Write \n3) Append \n4) Update \n5) Delete \n6) Search \n:"))
         if choice==1:
             display_csv()
         elif choice==2:
@@ -12,6 +12,10 @@ def main():
             append_csv()
         elif choice==4:
             update_csv()
+        elif choice==5:
+            delete_csv()
+        elif  choice==6:
+            search_csv()
         else:
             print("Enter valid number!")
         con=input("Do you want to continue?? (y/n)")
@@ -37,11 +41,11 @@ def write_csv():
         name=input("Enter name: ")
         team=input("Enter team: ")
         age=input("Enter age: ")
-        ppg=int(input("Enter points per game: "))
-        rpg=int(input("Enter rebounds per game: "))
-        apg=int(input("Enter assists per game: "))
-        bpg=int(input("Enter blocks per game: "))
-        spg=int(input("Enter steals per game: "))
+        ppg=float(input("Enter points per game: "))
+        rpg=float(input("Enter rebounds per game: "))
+        apg=float(input("Enter assists per game: "))
+        bpg=float(input("Enter blocks per game: "))
+        spg=float(input("Enter steals per game: "))
         a=ppg+rpg+apg+bpg+spg
         per=a/5
         data=[sno,name,team,age,ppg,rpg,apg,bpg,spg,per]
@@ -62,11 +66,11 @@ def append_csv():
         name=input("Enter name: ")
         team=input("Enter team: ")
         age=input("Enter age: ")
-        ppg=int(input("Enter points per game: "))
-        rpg=int(input("Enter rebounds per game: "))
-        apg=int(input("Enter assists per game: "))
-        bpg=int(input("Enter blocks per game: "))
-        spg=int(input("Enter steals per game: "))
+        ppg=float(input("Enter points per game: "))
+        rpg=float(input("Enter rebounds per game: "))
+        apg=float(input("Enter assists per game: "))
+        bpg=float(input("Enter blocks per game: "))
+        spg=float(input("Enter steals per game: "))
         a=ppg+rpg+apg+bpg+spg
         per=a/5
         data=[sno,name,team,age,ppg,rpg,apg,bpg,spg,per]
@@ -80,61 +84,116 @@ def append_csv():
     f.close()
 
 def update_csv():
-    f=open("player.csv","r+",newline='')
-    reader=csv.reader(f)
-    chk=input("Enter name to be searched: ")
-    found=0
-    for i in reader:
-        if i[1].lower()==chk.lower():
-            found+=1
-            print("Record found")
-            print(i[0],i[1],i[2],i[3],i[4])
-            while True:
-                x=int(input("What should be changed? 1) S.No 2) Name 3) Team 4) Age 5) PPG 6) RPG 7) APG 8) BPG 9)SPG "))
-                if x==1:
-                    y=int(input("Enter new serial number: "))
-                    i[0]=y
 
-                elif x==2:
-                    y=input("Enter new name: ")
-                    i[1]==y
+    with open("player.csv", "r") as fr:
+        reader = csv.reader(fr)
+        lines = list(reader)
 
-                elif x==3:
-                    y=int(input("Enter new team: "))
-                    i[2]=y
+   
+    found = False
 
-                elif x==4:
-                    y=int(input("Enter new age: "))
-                    i[3]=y
+    
+    with open("player.csv", "w", newline='') as fw:
+        writer = csv.writer(fw)
+        writer.writerow(lines[0]) 
 
-                elif x==5:
-                    y=input("Enter new points per game: ")
-                    i[4]=y
+        
+        check_name = input("Enter the name of the person to be updated: ")
+        search = int(input("Enter what should be updated: \n1) S.No \n2) Name \n3) Grade \n4) Age \n5) Subject \n: "))
 
-                elif x==6:
-                    y=input("Enter new rebounds per game: ")
-                    i[5]==y
-
-                elif x==7:
-                    y=int(input("Enter new assists per game: "))
-                    i[6]=y
-
-                elif x==8:
-                    y=int(input("Enter new blocks per game : "))
-                    i[7]=y
-
-                elif x==9:
-                    y=input("Enter new steals per game : ")
-                    i[8]=y
-
+        for i in lines[1:]:
+            if i[1] == check_name:
+                found = True
+                if search == 1:
+                    new_sno = int(input("Enter new serial number: "))
+                    i[0] = new_sno
+                elif search == 2:
+                    new_name = input("Enter new name: ")
+                    i[1] = new_name
+                elif search == 3:
+                    new_team = input("Enter new team: ")
+                    i[2] = new_team
+                elif search == 4:
+                    new_age = input("Enter new age: ")
+                    i[3] = new_age
+                elif search == 5:
+                    new_ppg = float(input("Enter new points per game: "))
+                    i[4] = new_ppg
+                    a=i[5]+i[6]+new_ppg+i[7]+i[8]
+                    per=a/5
+                    i[9]=per
+                elif search == 6:
+                    new_rpg = float(input("Enter new rebounds per game: "))
+                    i[4] = new_rpg
+                    a=i[4]+i[6]+new_rpg+i[7]+i[8]
+                    per=a/5
+                    i[9]=per
+                elif search == 7:
+                    new_apg = float(input("Enter new assists per game: "))
+                    i[4] = new_apg
+                    a=i[4]+i[5]+new_apg+i[7]+i[8]
+                    per=a/5
+                    i[9]=per
+                elif search == 8:
+                    new_bpg = float(input("Enter new blocks per game: "))
+                    i[4] = new_bpg
+                    a=i[4]+i[5]+i[6]+new_bpg+i[8]
+                    per=a/5
+                    i[9]=per
+                elif search == 9:
+                    new_spg = float(input("Enter new steals per game: "))
+                    i[4] = new_spg
+                    a=i[4]+i[5]+i[6]+i[7]+new_spg
+                    per=a/5
+                    i[9]=per
+                    
+                
                 else:
-                    print("Enter valid number")
+                    print("Enter valid number.")
+                writer.writerow(i) 
+            else:
+                writer.writerow(i)  
 
-                ch=input("Do you want to continue?? (y/n)")
-                if ch.lower()=='n':
-                    break
+    if not found:
+        print("Record not found.")
+    else:
+        print("Data has been updated in the CSV file.") 
+
+def delete_csv():
+    with open("player.csv","r") as fr:
+        reader=csv.reader(fr)
+        lines=list(reader)
+    found=0
+    with open("player.csv","w",newline='') as fw:
+        writer=csv.writer(fw)
+        writer.writerow(lines[0])
+        choice=input("Enter name of person to be deleted :")
+        for i in lines[1: ]:
+            if i[1]==choice:
+                found=1
+                continue
+            else:
+                writer.writerow(i)
+        if found==0:
+            print("Name not found")
+        else:
+            print("Deleted data from the CSV File.")
+
+        
+def search_csv():
+    fr=open("player.csv","r")
+    reader=csv.reader(fr)
+    print("Searching data from CSV file....")
+    choice=input("Enter name to be searched: ")
+    found=0
+    next(reader)
+    for i in reader:
+        if i[1]==choice:
+            print(i)
+            found=1
     if found==0:
-        print("Record not found")       
-    f.close()
+        print("Name not found")
+        
+    fr.close()
 
 main()
