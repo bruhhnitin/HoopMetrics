@@ -25,7 +25,7 @@ Commands available:
 ## Authors
 
 - [@bruhhnitin](https://github.com/bruhhnitin)
-- [@harvey-specter-99](https://github.com/harvey-specter-99) (alt account)
+  
 
 ## 🚀 About Me
 I'm a high school student currently in the final year of education as of making this project. Hoping to study Comp Sci at university.
