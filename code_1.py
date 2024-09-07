@@ -2,6 +2,7 @@ import csv
 
 def main():
     f=open("write.csv","w")
+    
     while True:
         choice=int(input("Enter your choice: \n1) Show details \n2) Write \n3) Append \n4) Update \n5) Delete \n6) Search \n:"))
         if choice==1:
@@ -34,7 +35,7 @@ def display_csv():
 def write_csv():
     f=open("player.csv","w",newline='')
     writer=csv.writer(f)
-    writer.writerow(["S.No","Name","Team","Age","PPG","RPG","APG",""])
+    writer.writerow(["S.No","Name","Team","Age","PPG","RPG","APG","BPG","SPG","PER"])
     record=[]
     while True:
         sno=int(input("Enter serial number: "))
