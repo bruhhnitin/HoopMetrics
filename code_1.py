@@ -1,7 +1,6 @@
 import csv
 
 def main():
-    f=open("write.csv","w")
     while True:
         choice=int(input("Enter your choice: \n1) Show details \n2) Write \n3) Append \n4) Update \n5) Delete \n6) Search \n:"))
         if choice==1:
@@ -18,10 +17,9 @@ def main():
             search_csv()
         else:
             print("Enter valid number!")
-        con=input("Do you want to continue?? (y/n)")
+        con=input("Do you want to continue operations?? (y/n)")
         if con.lower()=='n':
             break
-    f.close()
 
 def display_csv():
     f=open("player.csv","r")
@@ -34,7 +32,7 @@ def display_csv():
 def write_csv():
     f=open("player.csv","w",newline='')
     writer=csv.writer(f)
-    writer.writerow(["S.No","Name","Team","Age","PPG","RPG","APG",""])
+    writer.writerow(["S.No","Name","Team","Age","PPG","RPG","APG","BPG","SPG","Player Efficiency Rating"])
     record=[]
     while True:
         sno=int(input("Enter serial number: "))
@@ -47,10 +45,11 @@ def write_csv():
         bpg=float(input("Enter blocks per game: "))
         spg=float(input("Enter steals per game: "))
         a=ppg+rpg+apg+bpg+spg
-        per=a/5
+        x=a/5
+        per=round(x,2)
         data=[sno,name,team,age,ppg,rpg,apg,bpg,spg,per]
         record.append(data)
-        con=input("Do you want to continue? (y/n)")
+        con=input("Do you want to continue writing data? (y/n)")
         if con.lower()=='n':
             break
     for i in record:
@@ -75,7 +74,7 @@ def append_csv():
         per=a/5
         data=[sno,name,team,age,ppg,rpg,apg,bpg,spg,per]
         record.append(data)
-        con=input("Do you want to continue? (y/n)")
+        con=input("Do you want to continue appending data? (y/n)")
         if con.lower()=='n':
             break
     f.seek(0,0)
@@ -99,7 +98,7 @@ def update_csv():
 
         
         check_name = input("Enter the name of the person to be updated: ")
-        search = int(input("Enter what should be updated: \n1) S.No \n2) Name \n3) Grade \n4) Age \n5) Subject \n: "))
+        search = int(input("Enter what should be updated: \n1) S.No \n2) Name \n3) Team \n4) Age \n5) PPG \n6) PPG \n7 )RPG \n8) APG \n9) BPG \n10) SPG: "))
 
         for i in lines[1:]:
             if i[1] == check_name:
