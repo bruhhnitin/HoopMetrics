@@ -1,5 +1,5 @@
 
-# Player Efficiency Generator
+# HoopMetrics
 
 A project to input and manage player data for basketball papers, which is then stored within a CSV file, using Python. 
 
