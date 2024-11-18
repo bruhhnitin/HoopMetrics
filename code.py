@@ -11,7 +11,7 @@ def main():
             append_csv()
         elif choice==4:
             update_csv()
-            
+        elif choice==5:    
             delete_csv()
         elif  choice==6:
             search_csv()
@@ -99,7 +99,7 @@ def update_csv():
 
         
         check_name = input("Enter the name of the person to be updated: ")
-        search = int(input("Enter what should be updated: \n1) S.No \n2) Name \n3) Team \n4) Age \n5) PPG \n6) PPG \n7 )RPG \n8) APG \n9) BPG \n10) SPG: "))
+        search = int(input("Enter what should be updated: \n1) S.No \n2) Name \n3) Team \n4) Age \n5) PPG \n6) RPG \n7) APG \n8) BPG \n9) SPG \n:"))
 
         for i in lines[1:]:
             if i[1] == check_name:
@@ -107,52 +107,58 @@ def update_csv():
                 if search == 1:
                     new_sno = int(input("Enter new serial number: "))
                     i[0] = new_sno
+
                 elif search == 2:
                     new_name = input("Enter new name: ")
                     i[1] = new_name
+
                 elif search == 3:
                     new_team = input("Enter new team: ")
                     i[2] = new_team
+
                 elif search == 4:
                     new_age = input("Enter new age: ")
                     i[3] = new_age
+
                 elif search == 5:
                     new_ppg = float(input("Enter new points per game: "))
                     i[4] = new_ppg
-                    a=i[5]+i[6]+new_ppg+i[7]+i[8]
+                    a=float(i[5])+float(i[6])+float(i[4])+float(i[7])+float(i[8])
                     per=a/5
                     i[9]=per
+
                 elif search == 6:
                     new_rpg = float(input("Enter new rebounds per game: "))
-                    i[4] = new_rpg
-                    a=i[4]+i[6]+new_rpg+i[7]+i[8]
+                    i[5] = new_rpg
+                    a=float(i[5])+float(i[6])+float(i[4])+float(i[7])+float(i[8])
                     per=a/5
                     i[9]=per
+
                 elif search == 7:
                     new_apg = float(input("Enter new assists per game: "))
-                    i[4] = new_apg
-                    a=i[4]+i[5]+new_apg+i[7]+i[8]
+                    i[6] = new_apg
+                    a=float(i[5])+float(i[6])+float(i[4])+float(i[7])+float(i[8])
                     per=a/5
                     i[9]=per
+
                 elif search == 8:
                     new_bpg = float(input("Enter new blocks per game: "))
-                    i[4] = new_bpg
-                    a=i[4]+i[5]+i[6]+new_bpg+i[8]
+                    i[7] = new_bpg
+                    a=float(i[5])+float(i[6])+float(i[4])+float(i[7])+float(i[8])
                     per=a/5
                     i[9]=per
+
                 elif search == 9:
                     new_spg = float(input("Enter new steals per game: "))
-                    i[4] = new_spg
-                    a=i[4]+i[5]+i[6]+i[7]+new_spg
+                    i[8] = new_spg
+                    a=float(i[5])+float(i[6])+float(i[4])+float(i[7])+float(i[8])
                     per=a/5
                     i[9]=per
                     
-                
                 else:
                     print("Enter valid number.")
                 writer.writerow(i) 
-
-                
+  
             else:
                 writer.writerow(i)  
 
