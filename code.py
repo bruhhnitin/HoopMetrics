@@ -2,7 +2,7 @@ import csv
 
 def main():
     while True:
-        choice=int(input("Enter your choice: \n1) Show details \n2) Write \n3) Append \n4) Update \n5) Delete \n6) Search \n:"))
+        choice=int(input("Enter your choice: \n1) Show details \n2) Write \n3) Append \n4) Update \n5) Delete \n6) Search \n: "))
         if choice==1:
             display_csv()
         elif choice==2:
@@ -17,7 +17,7 @@ def main():
             search_csv()
         else:
             print("Enter valid number!")
-        con=input("Do you want to continue operations?? (y/n)")
+        con=input("Do you want to continue operations?? (y/n): ")
         if con.lower()=='n':
             break
 
@@ -50,7 +50,7 @@ def write_csv():
         per=round(x,2)
         data=[sno,name,team,age,ppg,rpg,apg,bpg,spg,per]
         record.append(data)
-        con=input("Do you want to continue writing data? (y/n)")
+        con=input("Do you want to continue writing data? (y/n): ")
         if con.lower()=='n':
             break
     for i in record:
@@ -75,7 +75,7 @@ def append_csv():
         per=a/5
         data=[sno,name,team,age,ppg,rpg,apg,bpg,spg,per]
         record.append(data)
-        con=input("Do you want to continue appending data? (y/n)")
+        con=input("Do you want to continue appending data? (y/n): ")
         if con.lower()=='n':
             break
     f.seek(0,0)
@@ -99,7 +99,7 @@ def update_csv():
 
         
         check_name = input("Enter the name of the person to be updated: ")
-        search = int(input("Enter what should be updated: \n1) S.No \n2) Name \n3) Team \n4) Age \n5) PPG \n6) RPG \n7) APG \n8) BPG \n9) SPG \n:"))
+        search = int(input("Enter what should be updated: \n1) S.No \n2) Name \n3) Team \n4) Age \n5) PPG \n6) RPG \n7) APG \n8) BPG \n9) SPG \n: "))
 
         for i in lines[1:]:
             if i[1] == check_name:
@@ -162,7 +162,7 @@ def update_csv():
             else:
                 writer.writerow(i)  
 
-    if not found:
+    if not found: 
         print("Record not found.")
     else:
         print("Data has been updated in the CSV file.") 
@@ -175,7 +175,7 @@ def delete_csv():
     with open("player.csv","w",newline='') as fw:
         writer=csv.writer(fw)
         writer.writerow(lines[0])
-        choice=input("Enter name of person to be deleted :")
+        choice=input("Enter name of person to be deleted : ")
         for i in lines[1: ]:
             if i[1]==choice:
                 found=1
@@ -183,7 +183,7 @@ def delete_csv():
             else:
                 writer.writerow(i)
         if found==0:
-            print("Name not found")
+            print("Name not found.")
         else:
             print("Deleted data from the CSV File.")
 
@@ -192,16 +192,45 @@ def search_csv():
     fr=open("player.csv","r")
     reader=csv.reader(fr)
     print("Searching data from CSV file....")
-    choice=input("Enter name to be searched: ")
+    choice=int(input("How do you want to search? \n1) Serial Number \n2) Name \n3) Team \n4) Age \n5) Player Efficiency Rating \n: "))
     found=0
     next(reader)
-    for i in reader:
-        if i[1]==choice:
-            print(i)
-            found=1
-    if found==0:
-        print("Name not found")
-        
-    fr.close()
+    if choice==1:
+        sno=int(input("Enter serial number to be searched: "))
+        for i in reader:
+            if int(i[0])==sno:
+                print(i)
+                found+=1
+                  
+    if choice==2:
+        name=input("Enter name to be searched: ").lower()
+        for i in reader:
+            if name in i[1].lower():
+                print(i)
+                found+=1
+                  
+    if choice==3:
+        team=input("Enter team to be searched : ").lower()
+        for i in reader:
+            if team in i[2].lower():
+                print(i)
+                found+=1
+                  
+    if choice==4:
+        age=int(input("Enter age to be searched : "))
+        for i in reader:
+            if int(i[3])==age:
+                print(i)
+                found+=1
 
+    if choice==5:
+        per=float(input("Enter PER to be searched: "))
+        for i in reader:
+            if float(i[9])==per:
+                print(i)
+                found+=1
+    
+    if found==0:
+            print("Search not found")
+            fr.close()      
 main()
