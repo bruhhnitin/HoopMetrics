@@ -168,21 +168,21 @@ def update_csv():
         print("Data has been updated in the CSV file.") 
 
 def delete_csv():
-    with open("player.csv","r") as fr:
-        reader=csv.reader(fr)
-        lines=list(reader)
-    found=0
-    with open("player.csv","w",newline='') as fw:
-        writer=csv.writer(fw)
+    with open("player.csv", "r", newline='') as fr:
+        reader = csv.reader(fr)
+        lines = list(reader)
+    found = False
+    with open("player.csv", "w", newline='') as fw:
+        writer = csv.writer(fw)
         writer.writerow(lines[0])
-        choice=input("Enter name of person to be deleted : ")
-        for i in lines[1: ]:
-            if i[1]==choice:
-                found=1
+        choice = input("Enter name of person to be deleted: ")
+        for i in lines[1:]:
+            if i[1].lower() == choice.lower():
+                found = True
                 continue
             else:
                 writer.writerow(i)
-        if found==0:
+        if not found:
             print("Name not found.")
         else:
             print("Deleted data from the CSV File.")
